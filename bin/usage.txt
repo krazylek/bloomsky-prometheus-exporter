@@ -1,0 +1,14 @@
+Usage: bloomsky-exporter [config file] {OPTIONS}
+
+Standard Options:
+
+       --port, -p  Select port for the metric server
+                   default 9099
+
+        --key, -k  Your Bloomsky api key
+                   Get it on http://dashboard.bloomsky.com/
+
+       --unit, -u  Set to "intl" if you prefer international units, "impl" for imperial
+                   Default to imperial units
+
+       --help, -h  Show this message

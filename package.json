@@ -1,0 +1,23 @@
+{
+  "name": "bloomsky-prometheus-exporter",
+  "bin": {
+    "bloomsky-exporter": "bin/cmd.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/krazylek/bloomsky-prometheus-exporter.git"
+  },
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "minimist": "^1.2.0",
+    "request": "^2.81.0",
+    "yaml": "^0.3.0"
+  }
+}
