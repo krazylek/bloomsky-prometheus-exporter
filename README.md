@@ -1,4 +1,4 @@
-Basic exporter that expose bloomsky data to Prometheus through a metrics server
+Basic exporter that expose [Bloomsky](https://www.bloomsky.com/) data to [Prometheus](https://prometheus.io/) through a metrics server
 
 ## Install
 
