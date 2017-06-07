@@ -11,7 +11,7 @@ Get your personnal key at http://dashboard.bloomsky.com/
 
 ## Install
 
-Clone repo, or try installing it with npm:
+Clone the repo, or install it with npm:
 
 ```
 npm install -g https://github.com/krazylek/bloomsky-prometheus-exporter
@@ -45,7 +45,7 @@ Example:
 node bin/server.js bloomsky.yml -p 9099
 ```
 
-or 
+If installed: 
 
 ```
 bloomsky-exporter bloomsky.yml -p 9099
