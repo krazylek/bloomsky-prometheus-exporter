@@ -42,7 +42,7 @@ Standard Options:
 Example:
 
 ```
-node bin/cmd.js bloomsky.yml -p 9099
+node bin/server.js bloomsky.yml -p 9099
 ```
 
 or 

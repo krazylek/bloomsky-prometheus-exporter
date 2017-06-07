@@ -1,7 +1,7 @@
 {
   "name": "bloomsky-prometheus-exporter",
   "bin": {
-    "bloomsky-exporter": "bin/cmd.js"
+    "bloomsky-exporter": "bin/server.js"
   },
   "repository": {
     "type": "git",
