@@ -1,5 +1,14 @@
 Basic exporter that expose [Bloomsky](https://www.bloomsky.com/) data to [Prometheus](https://prometheus.io/) through a metrics server
 
+If you own many stations, they should be identified by their ID and name.
+
+
+## Getting started
+
+Get your personnal key at http://dashboard.bloomsky.com/
+
+
+
 ## Install
 
 Clone repo, or try installing it with npm:
@@ -7,6 +16,7 @@ Clone repo, or try installing it with npm:
 ```
 npm install -g https://github.com/krazylek/bloomsky-prometheus-exporter
 ```
+
 
 ## Usage 
 
@@ -32,13 +42,13 @@ Standard Options:
 Example:
 
 ```
-node bin/cmd.js bloomsky.yml -p 9999
+node bin/cmd.js bloomsky.yml -p 9099
 ```
 
 or 
 
 ```
-bloomsky-exporter bloomsky.yml -p 9999
+bloomsky-exporter bloomsky.yml -p 9099
 ```
 
 ### API
@@ -69,6 +79,20 @@ Minimal yml file:
 ```
 key: <yourkey>
 unit: intl
+```
+
+## Docker
+
+Build (or wait for docker hub entry...)
+
+```
+docker build -t "krazylek/bloomsky-prometheus-exporter" .
+```
+
+Run
+
+```
+docker run -d -v $(pwd)/bloomsky.yml:/mnt/bloomsky.yml -p 9099:9099 --name bloomsky krazylek/bloomsky-prometheus-exporter
 ```
 
 ## License
