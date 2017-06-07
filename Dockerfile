@@ -1,8 +1,6 @@
 FROM node:8-alpine
-RUN apk update && \
-  apk add --no-cache git
 
-RUN npm install -g https://github.com/krazylek/bloomsky-prometheus-exporter
+RUN npm install -g bloomsky-prometheus-exporter
 
 EXPOSE 9099
 

@@ -14,7 +14,7 @@ Get your personnal key at http://dashboard.bloomsky.com/
 Clone the repo, or install it with npm:
 
 ```
-npm install -g https://github.com/krazylek/bloomsky-prometheus-exporter
+npm install -g bloomsky-prometheus-exporter
 ```
 
 
