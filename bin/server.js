@@ -15,7 +15,7 @@ if (argv.help) {
 
 var server = http.createServer(function (req, res) {
   if (req.url === '/metrics') {
-    getMetrics({ apiKey: config.key, uri: config.uri, unit: config.unit }, (err, metrics) => {
+    getMetrics(getBloomskyOptions(config), (err, metrics) => {
       if(err)
         return res.end(err)
       res.end(metrics)
@@ -23,10 +23,14 @@ var server = http.createServer(function (req, res) {
   }
 
   if (req.url === '/') {
-    bloomsky({ apiKey: config.key, uri: config.uri, unit: config.unit })
+    bloomsky(getBloomskyOptions(config))
       .pipe(res)
   }
 })
+
+function getBloomskyOptions({ key, unit, endpoint }) {
+  return { key, unit, endpoint }
+}
 
 var port = Number(config.port)
 console.log(`listening on ${port}, metrics served on http://localhost:${port}/metrics`)

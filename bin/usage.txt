@@ -3,7 +3,7 @@ Usage: bloomsky-exporter [config file] {OPTIONS}
 Standard Options:
 
        --port, -p  Select port for the metric server
-                   default 9099
+                   default 9261
 
         --key, -k  Your Bloomsky api key
                    Get it on http://dashboard.bloomsky.com/

@@ -1,8 +1,8 @@
 var bloomsky = require('./bloomsky-api')
 var exporter = require('./exporter')
 
-module.exports = function({ apiKey, uri, unit }, cb) {
-  bloomsky({ apiKey, uri, unit }, (err, httpResponse, body) => {
+module.exports = function({ key, unit, endpoint }, cb) {
+  bloomsky({ key, unit, endpoint }, (err, httpResponse, body) => {
     if(err)
       return cb(err)
     if(httpResponse.statusCode != 200)

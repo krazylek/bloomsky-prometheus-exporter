@@ -1,6 +1,6 @@
-Basic exporter that expose [Bloomsky](https://www.bloomsky.com/) data to [Prometheus](https://prometheus.io/) through a metrics server
+[Prometheus](https://prometheus.io/) exporter that expose [Bloomsky](https://www.bloomsky.com/) weather data.
 
-If you own many stations, they should be identified by their ID and name.
+The stations are identified by their ID and name.
 
 
 ## Getting started
@@ -8,10 +8,9 @@ If you own many stations, they should be identified by their ID and name.
 Get your personnal key at http://dashboard.bloomsky.com/
 
 
-
 ## Install
 
-Clone the repo, or install it with npm:
+Clone the repo, or install it on your system with npm:
 
 ```
 npm install -g bloomsky-prometheus-exporter
@@ -28,7 +27,7 @@ Usage: bloomsky-exporter [config file] {OPTIONS}
 Standard Options:
 
        --port, -p  Select port for the metric server
-                   default 9099
+                   default 9261
 
         --key, -k  Your Bloomsky api key
                    Get it on http://dashboard.bloomsky.com/
@@ -36,19 +35,15 @@ Standard Options:
        --unit, -u  Set to "intl" if you prefer international units, "impl" for imperial
                    Default to imperial units
 
+        --key, -k  Your Bloomsky api key
+
        --help, -h  Show this message
 ```
 
-Example:
+Example (see below for bloomsky.yml config file):
 
 ```
-node bin/server.js bloomsky.yml -p 9099
-```
-
-If installed: 
-
-```
-bloomsky-exporter bloomsky.yml -p 9099
+bloomsky-exporter bloomsky.yml
 ```
 
 ### API
@@ -58,19 +53,20 @@ Exemple:
 ```
 var getMetrics = require('./index.js')
 getMetrics({ 
-  apiKey: 'Your Key',
+  key: 'Your Key',
   unit: 'intl'
 }, function(err, metrics) {
   console.log(metrics)
 })
 ```
 
-There is an optional uri parameter to overide the bloomsky api endpoint
+There is an optional endpoinr parameter to override the bloomsky api endpoint.
 
 
 ## Configuration
 
-You can use either command line options or yml file
+You can use either command line options or yml file.
+Options available are port, key and unit.
 
 ### YAML
 
@@ -92,8 +88,12 @@ docker build -t "krazylek/bloomsky-prometheus-exporter" .
 Run
 
 ```
-docker run -d -v $(pwd)/bloomsky.yml:/mnt/bloomsky.yml -p 9099:9099 --name bloomsky krazylek/bloomsky-prometheus-exporter
+docker run -d -v $(pwd)/bloomsky.yml:/mnt/bloomsky.yml -p 9261:9261 --name bloomsky krazylek/bloomsky-prometheus-exporter
 ```
+
+## Note
+
+I am not affiliated with Bloomsky Inc in any way, and it is only a hobby project meant for personal use.
 
 ## License
 
