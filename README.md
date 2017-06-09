@@ -27,7 +27,7 @@ Usage: bloomsky-exporter [config file] {OPTIONS}
 Standard Options:
 
        --port, -p  Select port for the metric server
-                   default 9261
+                   default 9262
 
         --key, -k  Your Bloomsky api key
                    Get it on http://dashboard.bloomsky.com/
@@ -88,7 +88,7 @@ docker build -t "krazylek/bloomsky-prometheus-exporter" .
 Run
 
 ```
-docker run -d -v $(pwd)/bloomsky.yml:/mnt/bloomsky.yml -p 9261:9261 --name bloomsky krazylek/bloomsky-prometheus-exporter
+docker run -d -v $(pwd)/bloomsky.yml:/mnt/bloomsky.yml -p 9262:9262 --name bloomsky krazylek/bloomsky-prometheus-exporter
 ```
 
 ## Note
