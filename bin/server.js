@@ -16,8 +16,11 @@ if (argv.help) {
 var server = http.createServer(function (req, res) {
   if (req.url === '/metrics') {
     getMetrics(getBloomskyOptions(config), (err, metrics) => {
-      if(err)
-        return res.end(err)
+      if(err) {
+        console.error('error while requesting Bloomsky API', err)
+        res.statusCode = 500        
+        return res.end(err.toString)
+      }
       res.end(metrics)
     })
   }
