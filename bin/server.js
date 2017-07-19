@@ -19,7 +19,7 @@ var server = http.createServer(function (req, res) {
       if(err) {
         console.error('error while requesting Bloomsky API', err)
         res.statusCode = 500        
-        return res.end(err.toString)
+        return res.end(err.toString())
       }
       res.end(metrics)
     })
