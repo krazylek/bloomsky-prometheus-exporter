@@ -1,7 +1,10 @@
 FROM node:8-alpine
 
-RUN npm install -g bloomsky-prometheus-exporter
+RUN apk add --no-cache git
+COPY . /exporter
+WORKDIR /exporter
+RUN npm install --production && npm cache clean --force
 
 EXPOSE 9262
 
-CMD ["bloomsky-exporter", "/mnt/bloomsky.yml", "-p", "9262"]
+CMD ["npm", "start", "/mnt/bloomsky.yml", "-p", "9262"]
