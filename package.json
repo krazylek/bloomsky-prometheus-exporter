@@ -24,9 +24,10 @@
     "url": "http://pohl.fr"
   },
   "dependencies": {
+    "js-yaml": "^3.10.0",
     "minimist": "^1.2.0",
     "request": "^2.81.0",
-    "yaml": "^0.3.0"
+    "tape": "^4.8.0"
   },
   "license": "MIT"
 }

@@ -1,6 +1,10 @@
 var fs = require('fs')
 var minimist = require('minimist')
-var yaml = require('yaml')
+var yaml = require('js-yaml');
+var defaults = {
+  port: 9262,
+  unit: 'impl',
+}
 
 module.exports = load
 module.exports.parseFile = parseFile
@@ -13,13 +17,16 @@ function load(args) {
       p: 'port',
       u: 'unit',
       e: 'endpoint',
-    },
-    'default': {
-      port: 9262,
-      unit: 'impl',
     }
   })
-  var config = Object.assign({}, parseFile(argv._[0]), argv)
+  var fileConfig = Object.assign({}, parseFile(argv._[0]))
+
+  var config = {
+    key: argv.key || fileConfig.key,
+    port: argv.port || fileConfig.port || defaults.port,
+    unit: argv.unit || fileConfig.unit || defaults.unit,
+    endpoint: argv.endpoint || fileConfig.endpoint,
+  }
 
   return { config, argv }
 }
@@ -28,5 +35,6 @@ function parseFile(filepath) {
   if(! filepath)
     return console.error('Continuing without config file')
 
-  return yaml.eval(fs.readFileSync(filepath, 'utf8'))
+  //return yaml.eval(fs.readFileSync(filepath, 'utf8'))
+  return yaml.safeLoad(fs.readFileSync(filepath, 'utf8'))
 }

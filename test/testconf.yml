@@ -1,0 +1,4 @@
+key: keytest
+port: 9999
+unit: intl
+endpoint: bloomsky-api.endpoint

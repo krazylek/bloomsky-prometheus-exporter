@@ -82,7 +82,7 @@ unit: intl
 Build (or wait for docker hub entry...)
 
 ```
-docker build -t "krazylek/bloomsky-prometheus-exporter" .
+docker build -t "krazylek/bloomsky-prometheus-exporter" https://github.com/krazylek/bloomsky-prometheus-exporter.git
 ```
 
 Run
