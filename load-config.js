@@ -1,5 +1,5 @@
+require('dotenv').config()
 var fs = require('fs')
-var minimist = require('minimist')
 var yaml = require('js-yaml');
 var defaults = {
   port: 9262,
@@ -9,32 +9,21 @@ var defaults = {
 module.exports = load
 module.exports.parseFile = parseFile
 
-function load(args) {
-  var argv = minimist(args, {
-    alias: { 
-      h: 'help',
-      k: 'key',
-      p: 'port',
-      u: 'unit',
-      e: 'endpoint',
-    }
-  })
-  var fileConfig = Object.assign({}, parseFile(argv._[0]))
+function load(argv = {}) {
+  var configFilepath = (argv._ && argv._[0]) || 'bloomsky.yml'
+  var fileConfig = parseFile(configFilepath)
 
-  var config = {
-    key: argv.key || fileConfig.key,
-    port: argv.port || fileConfig.port || defaults.port,
-    unit: argv.unit || fileConfig.unit || defaults.unit,
-    endpoint: argv.endpoint || fileConfig.endpoint,
+  return {
+    key: argv.key || fileConfig.key || process.env.BLOOMSKY_KEY,
+    port: argv.port || fileConfig.port || process.env.BLOOMSKY_PORT ||  defaults.port,
+    unit: argv.unit || fileConfig.unit || process.env.BLOOMSKY_UNIT || defaults.unit,
+    endpoint: argv.endpoint || fileConfig.endpoint|| process.env.BLOOMSKY_ENDPOINT,
   }
-
-  return { config, argv }
 }
 
 function parseFile(filepath) {
-  if(! filepath)
+  if(!fs.existsSync(filepath))
     return console.error('Continuing without config file')
 
-  //return yaml.eval(fs.readFileSync(filepath, 'utf8'))
   return yaml.safeLoad(fs.readFileSync(filepath, 'utf8'))
 }

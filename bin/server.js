@@ -5,8 +5,18 @@ var fs = require('fs')
 var bloomsky = require('../bloomsky-api')
 var loadConf = require('../load-config')
 var getMetrics = require('../')
+var minimist = require('minimist')
+var argv = minimist(process.argv.slice(2), {
+  alias: { 
+    h: 'help',
+    k: 'key',
+    p: 'port',
+    u: 'unit',
+    e: 'endpoint',
+  }
+})
 
-var { config, argv } = loadConf(process.argv.slice(2))
+var config = loadConf(argv)
 
 if (argv.help) {
   return fs.createReadStream(__dirname + '/usage.txt')
