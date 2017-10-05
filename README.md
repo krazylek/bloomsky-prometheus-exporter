@@ -35,7 +35,7 @@ Standard Options:
        --unit, -u  Set to "intl" if you prefer international units, "impl" for imperial
                    Default to imperial units
 
-        --key, -k  Your Bloomsky api key
+   --endpoint, -e  Optional parameter to override the bloomsky api endpoint.
 
        --help, -h  Show this message
 ```
@@ -60,13 +60,14 @@ getMetrics({
 })
 ```
 
-There is an optional endpoinr parameter to override the bloomsky api endpoint.
-
 
 ## Configuration
 
-You can use either command line options or yml file.
-Options available are port, key and unit.
+You can use command line options, a yaml file or environment variables.
+Options available are `key`, `port`, `unit` and eventually the Bloomsky API `endpoint`.
+The only mandatory option is key, others have default values.
+
+Priority is `command line args` > `yaml` > `env vars`.
 
 ### YAML
 
@@ -76,6 +77,18 @@ Minimal yml file:
 key: <yourkey>
 unit: intl
 ```
+
+### ENV
+
+You can define them in a .env file
+
+```
+BLOOMSKY_KEY=<yourkey>
+BLOOMSKY_PORT=<port>
+BLOOMSKY_UNIT=<intl|impl>
+BLOOMSKY_ENDPOINT=<endpoint>
+```
+
 
 ## Docker
 
