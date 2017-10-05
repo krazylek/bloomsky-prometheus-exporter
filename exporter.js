@@ -44,11 +44,14 @@ function getMetrics(unit) {
     var { LAT, LON } = probe
     var probeId = `id="${id}",name="${name}"`
 
-    return (unit == 'intl' ? `
+    return (unit == 'intl' ? 
+`
 weather_temperature_celsius{${probeId}} ${data.Temperature}
-weather_pressure_hectopascal{${probeId}} ${data.Pressure}` : `
+weather_pressure_hectopascal{${probeId}} ${data.Pressure}` : 
+`
 weather_temperature_fahrenheit{${probeId}} ${data.Temperature}
-weather_pressure_inhg{${probeId}} ${data.Pressure}`) + `
+weather_pressure_inhg{${probeId}} ${data.Pressure}`) + 
+`
 weather_measurement_epoch{${probeId}} ${data.TS}
 weather_location_coordinates{dimension="latitude"} ${LAT}
 weather_location_coordinates{dimension="longitude"} ${LON}

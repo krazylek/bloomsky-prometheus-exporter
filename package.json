@@ -17,13 +17,14 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./bin/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tape test/*.js"
   },
   "author": {
     "name": "Benoit Pohl",
     "url": "http://pohl.fr"
   },
   "dependencies": {
+    "dotenv": "^4.0.0",
     "js-yaml": "^3.10.0",
     "minimist": "^1.2.0",
     "request": "^2.81.0",

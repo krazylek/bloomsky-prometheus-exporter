@@ -1,5 +1,6 @@
 var test = require('tape')
 var loadConfig = require('../load-config')
+var minimist = require('minimist')
 
 test('parsing a yaml file is ok', function (t) {
   t.plan(1)
@@ -23,46 +24,31 @@ test('giving parameters will change config', function (t) {
     '--unit', 'intl',
     '--endpoint', 'bloomsky-api.endpoint'
   ]
+  var argv = minimist(args)
   var expectedConfig = {
     key: 'keytest',
     port: 9999,
     unit: 'intl',
     endpoint: 'bloomsky-api.endpoint'
   }
-  var { config, argv } = loadConfig(args)
+  var config = loadConfig(argv)
   t.deepEqual(config, expectedConfig)
   t.equal(argv.help, true)
 })
 
-test('no parameters will give default config', function (t) {
-  t.plan(2)
-  var args = []
-  var expectedConfig = {
-    key: undefined,
-    port: 9262,
-    unit: 'impl',
-    endpoint: undefined
+test('giving a filename will load this file config', function (t) {
+  t.plan(1)
+  var argv = {
+    _: ['./test/testconf.yml'],
   }
-  var { config, argv } = loadConfig(args)
-  t.deepEqual(config, expectedConfig)
-  t.false(argv.help)
-})
-
-test('giving a filename will load config', function (t) {
-  t.plan(2)
-  var args = [
-    './test/testconf.yml',
-    '--help'
-  ]
   var expectedConfig = {
     key: 'keytest',
     port: 9999,
     unit: 'intl',
     endpoint: 'bloomsky-api.endpoint'
   }
-  var { config, argv } = loadConfig(args)
+  var config = loadConfig(argv)
   t.deepEqual(config, expectedConfig)
-  t.equal(argv.help, true)
 })
 
 test('giving a filename will load config, but cli params take over', function (t) {
@@ -75,13 +61,14 @@ test('giving a filename will load config, but cli params take over', function (t
     '--unit', 'intl',
     '--endpoint', 'bloomsky-api.endpointP'
   ]
+  var argv = minimist(args)
   var expectedConfig = {
     key: 'keytestP',
     port: 99990,
     unit: 'intl',
     endpoint: 'bloomsky-api.endpointP'
   }
-  var { config, argv } = loadConfig(args)
+  var config = loadConfig(argv)
   t.deepEqual(config, expectedConfig)
   t.equal(argv.help, true)
 })
